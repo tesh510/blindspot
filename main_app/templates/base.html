@@ -22,7 +22,7 @@
                 <ul class="right">
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="/cars">Cars</a></li>
+                    <li><a href="{% url 'cars_create' %}">Add a Car</a></li>
                     <li><a href="{% url 'index' %}">View All My Cars</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
