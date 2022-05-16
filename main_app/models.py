@@ -4,7 +4,7 @@ from django.urls import reverse
 
 # Create your models here.
 
-class Car(models.Model):  
+class Car(models.Model):
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     year = models.IntegerField()
@@ -12,7 +12,7 @@ class Car(models.Model):
     mileage = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-      return f'{self.name} ({self.id})'
+      return f'{self.make} ({self.id})'
     def get_absolute_url(self):
       return reverse('detail', kwargs={'car_id': self.id})
 
