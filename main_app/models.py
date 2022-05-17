@@ -23,7 +23,7 @@ class Car(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   # might cause error
   # reviews = models.ManyToManyField(Review)
-  reviews = models.ForeignKey(Review, on_delete=models.CASCADE)
+  review = models.ForeignKey(Review, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'{self.make} ({self.id})'
