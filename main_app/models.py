@@ -4,15 +4,6 @@ from django.contrib.auth.models import User
 from datetime import date
 
 # Create your models here.
-class Review(models.Model):
-  name = models.CharField(max_length=1000)
-  date = models.DateField('review date')
-
-  def __str__(self):
-    return f'{self.make} ({self.id})'
-
-  def get_absolute_url(self):
-    return reverse('reviews_detail', kwargs={'pk': self.id})
 
 class Car(models.Model):
   make = models.CharField(max_length=50)
@@ -23,7 +14,6 @@ class Car(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   # might cause error
   # reviews = models.ManyToManyField(Review)
-  review = models.ForeignKey(Review, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'{self.make} ({self.id})'
@@ -31,6 +21,16 @@ class Car(models.Model):
   def get_absolute_url(self):
     return reverse('detail', kwargs={'car_id': self.id})
 
+class Review(models.Model):
+  name = models.CharField(max_length=1000)
+  date = models.DateField('review date')
+  car = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f'{self.make} ({self.id})'
+
+  def get_absolute_url(self):
+    return reverse('reviews_detail', kwargs={'pk': self.id})
 
 class Comment(models.Model):
   description = models.CharField(max_length=150)
