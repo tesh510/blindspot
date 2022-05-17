@@ -67,7 +67,7 @@ class ReviewDelete(LoginRequiredMixin, DeleteView):
   model = Review
   success_url = '/reviews/'
 
-@login_required
+
 class CarCreate(LoginRequiredMixin, CreateView):
   model = Car
   fields = ['make', 'model', 'year', 'engine', 'mileage']
@@ -75,12 +75,12 @@ class CarCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user 
     return super().form_valid(form)
 
-@login_required
+
 class CarUpdate(LoginRequiredMixin, UpdateView):
   model = Car
   fields = ['make', 'model', 'year', 'engine', 'mileage']
 
-@login_required
+
 class CarDelete(LoginRequiredMixin, DeleteView):
   model = Car
   success_url = '/cars/'
