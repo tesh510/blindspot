@@ -26,13 +26,30 @@ def cars_index(request):
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
   comment_form = CommentForm()
-  id_list = car.review.all().values_list('id')
-  reviews_car_doesnt_have = Review.objects.exclude(id__in=id_list)
+  id_list = car.review_set.all().values_list('id')
+  # reviews_car_doesnt_have = Review.objects.exclude(id__in=id_list)
   return render(request, 'cars/detail.html', {
     'car': car,
     'comment_form': comment_form,
-    'reviews': reviews_car_doesnt_have
+    'reviews': id_list
   })
+
+class CarCreate(LoginRequiredMixin, CreateView):
+  model = Car
+  fields = ['make', 'model', 'year', 'engine', 'mileage']
+  def form_valid(self, form):
+    form.instance.user = self.request.user 
+    return super().form_valid(form)
+
+
+class CarUpdate(LoginRequiredMixin, UpdateView):
+  model = Car
+  fields = ['make', 'model', 'year', 'engine', 'mileage']
+
+
+class CarDelete(LoginRequiredMixin, DeleteView):
+  model = Car
+  success_url = '/cars/'
 
 @login_required
 def add_comment(request, car_id):
@@ -67,22 +84,6 @@ class ReviewDelete(LoginRequiredMixin, DeleteView):
   success_url = '/reviews/'
 
 
-class CarCreate(LoginRequiredMixin, CreateView):
-  model = Car
-  fields = ['make', 'model', 'year', 'engine', 'mileage']
-  def form_valid(self, form):
-    form.instance.user = self.request.user 
-    return super().form_valid(form)
-
-
-class CarUpdate(LoginRequiredMixin, UpdateView):
-  model = Car
-  fields = ['make', 'model', 'year', 'engine', 'mileage']
-
-
-class CarDelete(LoginRequiredMixin, DeleteView):
-  model = Car
-  success_url = '/cars/'
 
 @login_required
 def add_photo(request, car_id):
