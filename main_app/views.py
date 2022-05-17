@@ -25,7 +25,6 @@ def cars_index(request):
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
-  reviews_car_doesnt_have = Review.objects.exclude(id__in=id_list)
   comment_form = CommentForm()
   id_list = car.review.all().values_list('id')
   reviews_car_doesnt_have = Review.objects.exclude(id__in=id_list)
