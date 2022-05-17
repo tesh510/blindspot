@@ -19,11 +19,11 @@ class Car(models.Model):
   model = models.CharField(max_length=50)
   year = models.IntegerField()
   engine = models.CharField(max_length=50)
-  mileage = models.CharField(max_length=50)
+  mileage = models.IntegerField()
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   # might cause error
   # reviews = models.ManyToManyField(Review)
-  reviews = models.ForeignKey(Review, on_delete=models.CASCADE)
+  # reviews = models.ForeignKey(Review, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'{self.make} ({self.id})'
