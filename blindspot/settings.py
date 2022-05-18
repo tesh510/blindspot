@@ -131,3 +131,6 @@ LOGIN_REDIRECT_URL = '/cars/'
 LOGOUT_REDIRECT_URL = '/cars/'
 
 WSGI_APPLICATION = 'blindspot.wsgi.application'
+
+import django_on_heroku
+django_on_heroku.settings(locals())
