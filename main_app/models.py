@@ -32,8 +32,8 @@ class Review(models.Model):
   class Meta:
     ordering = ['-date']
 
-  # def get_absolute_url(self):
-  #   return reverse('reviews_detail', kwargs={'pk': self.id})
+  def get_absolute_url(self):
+    return reverse('reviews_detail', kwargs={'review_id': self.id})
 
 class Comment(models.Model):
   description = models.CharField(max_length=150)
@@ -42,6 +42,9 @@ class Comment(models.Model):
 
   def __str__(self):
     return f'{self.make} ({self.id})'
+
+  def get_absolute_url(self):
+    return reverse('detail', kwargs={'comment_id': self.id})
 
   class Meta:
     ordering = ['-date']
