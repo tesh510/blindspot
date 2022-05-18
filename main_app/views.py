@@ -9,7 +9,7 @@ import os
 import uuid
 import boto3
 from .models import Car, Review, Photo
-from .forms import CommentForm
+from .forms import CommentForm, ReviewForm
 
 # Define the home view
 def home(request):
@@ -26,11 +26,13 @@ def cars_index(request):
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
   comment_form = CommentForm()
+  review_form = ReviewForm()
   id_list = car.review_set.all().values_list('id')
   # reviews_car_doesnt_have = Review.objects.exclude(id__in=id_list)
   return render(request, 'cars/detail.html', {
     'car': car,
     'comment_form': comment_form,
+    'review_form': review_form,
     'reviews': id_list
   })
 
@@ -52,6 +54,15 @@ class CarDelete(LoginRequiredMixin, DeleteView):
   success_url = '/cars/'
 
 @login_required
+def add_review(request, car_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+    new_review = form.save(commit=False)
+    new_review.car_id = car_id
+    new_review.save()
+  return redirect('detail', car_id=car_id)
+
+@login_required
 def add_comment(request, car_id):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -60,10 +71,10 @@ def add_comment(request, car_id):
     new_comment.save()
   return redirect('detail', car_id=car_id)
 
-@login_required
-def assoc_review(request, car_id, review_id):
-  Car.objects.get(id=car_id).reviews.add(review_id)
-  return redirect('detail', car_id=car_id)
+# @login_required
+# def assoc_review(request, car_id, review_id):
+#   Car.objects.get(id=car_id).reviews.add(review_id)
+#   return redirect('detail', car_id=car_id)
 
 class ReviewList(LoginRequiredMixin, ListView):
   model = Review
@@ -114,3 +125,4 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
