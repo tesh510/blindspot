@@ -34,7 +34,7 @@ class Review(models.Model):
 
 class Comment(models.Model):
   description = models.CharField(max_length=150)
-  date = models.DateField('comment date')
+  date = models.DateField(auto_now_add=True)
   car = models.ForeignKey(Car, on_delete=models.CASCADE)
 
   def __str__(self):
