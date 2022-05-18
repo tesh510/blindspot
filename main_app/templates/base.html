@@ -15,19 +15,21 @@
 <body>
     <header class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div>
                 <ul>
-                    <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Blindspot</a></li>
+                    <li><a href="/" class="brand-logo center black-text">&nbsp;&nbsp;Blindspot</a></li>
                 </ul>
-                <ul class="right">
-                    <li><a href="{% url 'about' %}">About</a></li>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{% url 'about' %}" class="black-text">About</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'cars_create' %}">Add a Car</a></li>
-                    <li><a href="{% url 'index' %}">View All My Cars</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                    {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'cars_create' %}" class="black-text">Add a Car</a></li>
+                    <li><a href="{% url 'index' %}" class="black-text">All Car Reviews</a></li>
+                    <div class="right hide-on-med-and-down">
+                        <li><a href="{% url 'logout' %}" class="black-text">Log Out</a></li>
+                        {% else %}
+                        <li><a href="{% url 'signup' %}" class="black-text">Sign Up</a></li>
+                        <li><a href="{% url 'login' %}" class="black-text">Log In</a></li>
+                    </div>
                     {% endif %}
                 </ul>
                 </ul>
@@ -38,7 +40,7 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
+    <footer class="page-footer grey darken-2">
         <div class="right">All Rights Reserved, &copy; 2022 Blindspot &nbsp;</div>
     </footer>
 </body>
