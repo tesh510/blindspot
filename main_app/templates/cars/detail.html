@@ -95,8 +95,7 @@
       {% for comment in car.comment_set.all %}
         <tr>
           <td>{{comment.date}}</td>
-          <!-- <td>{{comment.get_meal_display}}</td> -->
-          <!-- NEED TO DISPLAY COMMENTS -->
+          <td> {{ comment.description }}</td>
         </tr>
       {% endfor %}
     </tbody>
