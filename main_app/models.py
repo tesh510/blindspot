@@ -22,15 +22,18 @@ class Car(models.Model):
     return reverse('detail', kwargs={'car_id': self.id})
 
 class Review(models.Model):
-  name = models.CharField(max_length=1000)
-  date = models.DateField('review date')
+  description = models.CharField(max_length=1500)
+  date = models.DateField(auto_now_add=True)
   car = models.ForeignKey(Car, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'{self.make} ({self.id})'
 
-  def get_absolute_url(self):
-    return reverse('reviews_detail', kwargs={'pk': self.id})
+  class Meta:
+    ordering = ['-date']
+
+  # def get_absolute_url(self):
+  #   return reverse('reviews_detail', kwargs={'pk': self.id})
 
 class Comment(models.Model):
   description = models.CharField(max_length=150)
