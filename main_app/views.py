@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import os
 import uuid
 import boto3
-from .models import Car, Review, Photo
+from .models import Car, Review, Photo, Comment
 from .forms import CommentForm, ReviewForm
 
 # Define the home view
@@ -54,15 +54,6 @@ class CarDelete(LoginRequiredMixin, DeleteView):
   success_url = '/cars/'
 
 @login_required
-def add_review(request, car_id):
-  form = ReviewForm(request.POST)
-  if form.is_valid():
-    new_review = form.save(commit=False)
-    new_review.car_id = car_id
-    new_review.save()
-  return redirect('detail', car_id=car_id)
-
-@login_required
 def add_comment(request, car_id):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -71,10 +62,31 @@ def add_comment(request, car_id):
     new_comment.save()
   return redirect('detail', car_id=car_id)
 
-# @login_required
-# def assoc_review(request, car_id, review_id):
-#   Car.objects.get(id=car_id).reviews.add(review_id)
-#   return redirect('detail', car_id=car_id)
+class CommentCreate(LoginRequiredMixin, CreateView):
+  model = Comment
+  fields = ['description']
+  def form_valid(self, form):
+    form.instance.user = self.request.user 
+    return super().form_valid(form)
+
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+  model = Comment
+  fields = ['description']
+  success_url = '/cars/'
+
+class CommentDelete(LoginRequiredMixin, DeleteView):
+  model = Comment
+  slug_field = 'product_slug'
+  success_url = '/cars/'
+
+@login_required
+def add_review(request, car_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+    new_review = form.save(commit=False)
+    new_review.car_id = car_id
+    new_review.save()
+  return redirect('detail', car_id=car_id)
 
 class ReviewList(LoginRequiredMixin, ListView):
   model = Review
@@ -88,7 +100,7 @@ class ReviewCreate(LoginRequiredMixin, CreateView):
 
 class ReviewUpdate(LoginRequiredMixin, UpdateView):
   model = Review
-  fields = ['name', 'color']
+  fields = ['description']
 
 class ReviewDelete(LoginRequiredMixin, DeleteView):
   model = Review
