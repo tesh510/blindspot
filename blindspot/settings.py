@@ -130,4 +130,4 @@ LOGIN_REDIRECT_URL = '/cars/'
 
 LOGOUT_REDIRECT_URL = '/cars/'
 
-
+WSGI_APPLICATION = 'blindspot.wsgi.application'
