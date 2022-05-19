@@ -23,6 +23,12 @@
                     <li><a href="/" class="brand-logo center black-text">&nbsp;&nbsp;Blindspot</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
+                    <form class="d-flex" method=POST action="{% url 'search_cars' %}">
+                      {% csrf_token %}
+              
+                      <input class="form-control me-2" type="search" placeholder="Search Cars" aria-label="Search" name="searched">
+                      <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </form>
                     <li><a href="{% url 'about' %}" class="black-text">About</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'cars_create' %}" class="black-text">Add a Car</a></li>
@@ -36,6 +42,7 @@
                     {% endif %}
                 </ul>
                 </ul>
+            </ul>
             </div>
         </nav>
     </header>
