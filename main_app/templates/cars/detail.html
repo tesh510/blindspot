@@ -32,7 +32,6 @@
 </div>
 <div class="col s6">
   <h3>Reviews</h3>
-  <hr>
   <div class="col s6">
     <form action="{% url 'add_review' car.id %}" method="POST">
       {% csrf_token %}
@@ -44,34 +43,34 @@
         <tr>
           <th>Date</th>
           <th>Reviews</th>
+          <th>Rating</th>
         </tr>
       </thead>
       <tbody>
         {% for review in car.review_set.all %}
         <tr>
-          <td>{{review.date}}</td>
-          <td> {{ review.description }}</td>
+          <td>{{ review.date }}</td>
+          <td>{{ review.description }}</td>
+          <td>{{ review.rating }}</td>
         </tr>
         {% endfor %}
-        <!-- <div class="card-action">
-          <a href="{% url 'reviews_update' car.id %}">Edit</a>
-          <a href="{% url 'reviews_delete' car.id %}">Delete</a>
-        </div> -->
       </tbody>
     </table>
   </div>
+  <br>
+  <br>
   <div class="col s6">
-    <h3>Comments</h3>
+    <h3>Questions</h3>
     <form action="{% url 'add_comment' car.id %}" method="POST">
       {% csrf_token %}
       {{ comment_form.as_p }}
-      <input type="submit" class="btn" value="Add a Comment">
+      <input type="submit" class="btn" value="Ask a Question?">
     </form>
     <table class="striped">
       <thead>
         <tr>
           <th>Date</th>
-          <th>Comments</th>
+          <th>Questions</th>
           <th></th>
           <th></th>
         </tr>
@@ -101,5 +100,10 @@
   // might cause error
   const selectEl = document.getElementById('id_comment');
   M.FormSelect.init(selectEl);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
 </script>
 {% endblock %}

@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import date
 
-# Create your models here.
+# Create your models here
 
 class Car(models.Model):
   make = models.CharField(max_length=50)
@@ -23,6 +23,7 @@ class Car(models.Model):
 
 class Review(models.Model):
   description = models.CharField(max_length=1500)
+  rating = models.CharField(max_length=10)
   date = models.DateField(auto_now_add=True)
   car = models.ForeignKey(Car, on_delete=models.CASCADE)
 
