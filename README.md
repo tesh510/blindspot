@@ -1,4 +1,4 @@
-div align="center">
+<div align="center">
    <h1> BLIND SPOT </h1>
    <h2> Project 3  (P3) </h2>
 User can post car reviews and ask questions in this app.
