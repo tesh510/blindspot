@@ -33,7 +33,7 @@ def cars_detail(request, car_id):
     'car': car,
     'comment_form': comment_form,
     'review_form': review_form,
-    'reviews': id_list
+    'reviews': id_list,
   })
 
 class CarCreate(LoginRequiredMixin, CreateView):

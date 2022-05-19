@@ -9,4 +9,4 @@ class CommentForm(ModelForm):
 class ReviewForm(ModelForm):
   class Meta:
     model = Review
-    fields = ['description']
+    fields = ['description', 'rating']
