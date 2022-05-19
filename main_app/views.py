@@ -12,16 +12,21 @@ from .models import Car, Review, Photo, Comment
 from .forms import CommentForm, ReviewForm
 
 # Define the home view
+
+
 def home(request):
   return render(request, 'home.html')
+
 
 def about(request):
   return render(request, 'about.html')
 
+
 @login_required
 def cars_index(request):
     cars = Car.objects.filter(user=request.user)
-    return render(request, 'cars/index.html', { 'cars': cars })
+    return render(request, 'cars/index.html', {'cars': cars})
+
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
@@ -36,11 +41,13 @@ def cars_detail(request, car_id):
     'reviews': id_list,
   })
 
+
 class CarCreate(LoginRequiredMixin, CreateView):
   model = Car
   fields = ['make', 'model', 'year', 'engine', 'mileage']
+
   def form_valid(self, form):
-    form.instance.user = self.request.user 
+    form.instance.user = self.request.user
     return super().form_valid(form)
 
 
@@ -53,6 +60,7 @@ class CarDelete(LoginRequiredMixin, DeleteView):
   model = Car
   success_url = '/cars/'
 
+
 @login_required
 def add_comment(request, car_id):
   form = CommentForm(request.POST)
@@ -62,22 +70,27 @@ def add_comment(request, car_id):
     new_comment.save()
   return redirect('detail', car_id=car_id)
 
+
 class CommentCreate(LoginRequiredMixin, CreateView):
   model = Comment
   fields = ['description']
+
   def form_valid(self, form):
-    form.instance.user = self.request.user 
+    form.instance.user = self.request.user
     return super().form_valid(form)
+
 
 class CommentUpdate(LoginRequiredMixin, UpdateView):
   model = Comment
   fields = ['description']
   success_url = '/cars/'
 
+
 class CommentDelete(LoginRequiredMixin, DeleteView):
   model = Comment
   slug_field = 'product_slug'
   success_url = '/cars/'
+
 
 @login_required
 def add_review(request, car_id):
@@ -88,24 +101,28 @@ def add_review(request, car_id):
     new_review.save()
   return redirect('detail', car_id=car_id)
 
+
 class ReviewList(LoginRequiredMixin, ListView):
   model = Review
 
+
 class ReviewDetail(LoginRequiredMixin, DetailView):
   model = Review
+
 
 class ReviewCreate(LoginRequiredMixin, CreateView):
   model = Review
   fields = '__all__'
 
+
 class ReviewUpdate(LoginRequiredMixin, UpdateView):
   model = Review
   fields = ['description']
 
+
 class ReviewDelete(LoginRequiredMixin, DeleteView):
   model = Review
   success_url = '/reviews/'
-
 
 
 @login_required
@@ -113,7 +130,8 @@ def add_photo(request, car_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        key = uuid.uuid4().hex[:6] + \
+                         photo_file.name[photo_file.name.rfind('.'):]
         try:
             bucket = os.environ['S3_BUCKET']
             s3.upload_fileobj(photo_file, bucket, key)
@@ -123,6 +141,7 @@ def add_photo(request, car_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('detail', car_id=car_id)
+
 
 def signup(request):
   error_message = ''
@@ -138,3 +157,17 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+
+def search_cars(request):
+	if request.method == "POST":
+		searched = request.POST['searched']
+		cars = Car.objects.filter(make__contains=searched)
+	
+		return render(request, 
+		'cars/search_cars.html', 
+		{'searched':searched,
+		'cars':cars})
+	else:
+		return render(request, 
+		'cars/search_cars.html', 
+		{})

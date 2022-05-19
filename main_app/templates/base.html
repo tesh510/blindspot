@@ -10,9 +10,9 @@
     <title>Blindspot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <link rel="icon" type="image/png" href="/favicon.png"/>
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="https://i.imgur.com/EL2mVW9.png"/>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/EL2mVW9.png" />
 </head>
 
 <body>
@@ -22,6 +22,17 @@
                 <ul>
                     <li><a href="/" class="brand-logo center black-text">&nbsp;&nbsp;Blindspot</a></li>
                 </ul>
+                <div>
+                    <ul class="left hide-on-med-and-down">
+                        <form class="input-field" method=POST action="{% url 'search_cars' %}">
+                            {% csrf_token %}
+                            <div id="searchBar">
+                                <input class="form-control me-2" type="search" placeholder="Search Cars" aria-label="Search" name="searched">
+                                <button id="searchBtn" class="btn white black-text" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </ul>
+                </div>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{% url 'about' %}" class="black-text">About</a></li>
                     {% if user.is_authenticated %}

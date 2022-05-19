@@ -53,6 +53,18 @@ main {
   font-weight: bolder;
 }
 
+#searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+}
+
+#searchBtn {
+  margin-left: 1.25rem;
+}
+
 nav {
   background-color: white !important;
 }
