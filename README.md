@@ -29,7 +29,7 @@ Users will be able to create and post car reviews, and ask questions in this app
 ## Getting Started
 
 Deployed Link (Heroku)
-[Blind Spot]()
+[Blind Spot](https://blindspot-1.herokuapp.com/)
 
 ## Next Steps
 
