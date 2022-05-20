@@ -32,7 +32,6 @@ def cars_detail(request, car_id):
   comment_form = CommentForm()
   review_form = ReviewForm()
   id_list = car.review_set.all().values_list('id')
-  # reviews_car_doesnt_have = Review.objects.exclude(id__in=id_list)
   return render(request, 'cars/detail.html', {
     'car': car,
     'comment_form': comment_form,
