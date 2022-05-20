@@ -1,17 +1,17 @@
 <div align="center">
-   <h1> BLIND SPOT </h1>
-   <h2> Project 3  (P3) </h2>
-User can post car reviews and ask questions in this app.
+   <h1> BLINDSPOT </h1>
+   <h2> Project 3  (P3)</h2>
+Users will be able to create and post car reviews, and ask questions in this application.
 
-<h5>Team Member: Hitesh Deo, Jordan Garcia , Yi Li </h5>
+<h5>Team Members: Hitesh Deo, Jordan Garcia , Yi Li </h5>
 
 ## Screenshots
 | Description | Screenshot |
 |------------ | ------------|
-| <h3 align="center">Home Page</h3> | <img >
-| <h3 align="center">About</h3> | <img >
-| <h3 align="center">All Car Reviews </h3> |  <img>
-| <h3 align="center"> Add a Car</h3> | <img>
+| <h3 align="center">Home Page</h3> | <img src="https://i.imgur.com/MSpyS3S.png">
+| <h3 align="center">About</h3> | <img src="https://i.imgur.com/GZXya1y.png" >
+| <h3 align="center">All Car Reviews </h3> |  <img src="https://i.imgur.com/8RlUnlr.png">
+| <h3 align="center"> Add a Car</h3> | <img src="https://i.imgur.com/w8KS8hs.png">
 </details>
 
 ## Technoloies Used
@@ -35,8 +35,8 @@ Deployed Link (Heroku)
 
 ### Upcoming Features
 
-- [ ] Able to save favorite car reviews 
+- [ ] Allow users to favorite/bookmark car reviews 
 
-- [ ] Able to connect to user google and facebook account
+- [ ] Allow users to connect to user google and facebook account
 
-- [ ] Adding API
+- [ ] Consuming an API

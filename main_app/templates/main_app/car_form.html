@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% if object %}
-  <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
-{% else %}
-  <h1>Add Car</h1>
-{% endif %}
+<div class="container">
+  {% if object %}
+  <h1 id="carAdd">Edit <span class="teal-text">{{ object.make }}</span></h1>
+  {% else %}
+  <h1 class="title" id="carAdd">Add Car</h1>
+  {% endif %}
 
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   <form action="" method="POST">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
-    <br>
-    <input type="submit" value="Submit!" class="btn light-blue lighten-1">
+    <div id="formsAddCar">
+      <table>
+        <!-- Render the inputs inside of <tr>s & <td>s -->
+        {{ form.as_table }}
+      </table>
+      <br>
+      <input type="submit" value="Add Car to Blindspot" class="btn light-blue lighten-1">
+    </div>
   </form>
+</div>
 {% endblock %}

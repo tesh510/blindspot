@@ -10,6 +10,7 @@
     <title>Blindspot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.imgur.com/EL2mVW9.png" />
@@ -28,7 +29,7 @@
                             {% csrf_token %}
                             <div id="searchBar">
                                 <input class="form-control me-2" type="search" placeholder="Search Cars" aria-label="Search" name="searched">
-                                <button id="searchBtn" class="btn white black-text" type="submit">Search</button>
+                                <button id="searchBtn" class="btn white black-text" type="submit"><span class="material-symbols-outlined">search</span></button>
                             </div>
                         </form>
                     </ul>
@@ -50,12 +51,12 @@
             </div>
         </nav>
     </header>
-    <main class="container">
+    <main>
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer grey darken-2">
-        <div class="right">All Rights Reserved, &copy; 2022 Blindspot &nbsp;</div>
+    <footer class="page-footer grey darken-3" id="footer">
+        <div class="center-align" id="footerTxt">All Rights Reserved, &copy; 2022 Blindspot &nbsp;</div>
     </footer>
 </body>
 

@@ -1,44 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container">
 	{% if searched %}
-		<h1>You Searched For {{ searched }}</h1>
-		<br/>
+	<h4>You Searched For "{{ searched }}"</h4>
+	<br />
 
-		{% for car in cars %}
-			
-			<div class="card">
-  <div class="card-header">
-    Car
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">{{ car }}</h5>
-    <p class="card-text">
-    	<ul>
-    {% if car.make %}
-		<li>{{ car.make }}</li>
-	{% endif %}
+	{% for car in cars %}
 
-	{% if car.model %}
-		<li>{{ car.model }}</li>
-	{% endif %}
+	<div class="card">
+		<div class="card-header">
+			Car
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">{{ car }}</h5>
+			<p class="card-text">
+			<ul>
+				{% if car.make %}
+				<li>{{ car.make }}</li>
+				{% endif %}
 
-	{% if car.year %}
-		<li>{{ car.year }}</li>
-	{% endif %}
+				{% if car.model %}
+				<li>{{ car.model }}</li>
+				{% endif %}
 
-	</ul>
+				{% if car.year %}
+				<li>{{ car.year }}</li>
+				{% endif %}
+			</ul>
+			</p>
+		</div>
+	</div>
+	<br />
+	{% endfor %}
 
-
-    </p>
-  </div>
-</div>
-	<br/>
-		{% endfor %}
-	
 	{% else %}
-		<h1>Hey! You Forgot To Search For A Car...</h1>
+	<h1>Hey! You Forgot To Search For A Car...</h1>
 	{% endif %}
-	
-{% endblock %}
+</div>
+
+	{% endblock %}

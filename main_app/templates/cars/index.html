@@ -1,31 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>All Car Reviews</h1>
+<div class="formMargin">
+  <h1 class="title">All Car Reviews</h1>
 
-{% for car in cars %}
-<div class="row">
-  <div class="col s12 m7">
-    <a href="{% url 'detail' car.id %}">
-    <div class="card">
-        <div class="card-image">
-          {% for photo in car.photo_set.all %}
-          <img class="responsive-img card-panel" src="{{ photo.url }}">
-          {% endfor %}
-        </div>
-        <div class="card-content">
-          <p>Make: {{ car.make }}</p>
-          <p>Model: {{ car.model }}</p>
-          <p>Year: {{ car.year }}</p>
-          <p>Engine: {{ car.engine }}</p>
-          <p>Mileage: {{ car.mileage }}</p>
-        </div>
-      </a>
+  {% for car in cars %}
+  <div class="row">
+    <div class="col s4">
+      <a href="{% url 'detail' car.id %}">
+      <div class="card" id="carCard">
+          <div class="card-image">
+            {% for photo in car.photo_set.all %}
+            <img id="imageCard" src="{{ photo.url }}">
+            {% endfor %}
+          </div>
+          <div class="card-content black-text">
+            <p>Make: {{ car.make }}</p>
+            <p>Model: {{ car.model }}</p>
+            <p>Year: {{ car.year }}</p>
+            <p>Engine: {{ car.engine }}</p>
+            <p>Mileage: {{ car.mileage }}</p>
+          </div>
+        </a>
+      </div>
     </div>
+    {% endfor %}
   </div>
 </div>
 
-</div>
-{% endfor %}
 
 {% endblock %}
