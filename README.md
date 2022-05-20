@@ -14,7 +14,7 @@ Users will be able to create and post car reviews, and ask questions in this app
 | <h3 align="center"> Add a Car</h3> | <img src="https://i.imgur.com/w8KS8hs.png">
 </details>
 
-## Technoloies Used
+## Technologies Used
 ![JavaScript](https://img.shields.io/badge/-JavaScript-333?style=flat&logo=javascript) 
 ![HTML5](https://img.shields.io/badge/-HTML5-333?style=flat&logo=html5)
 ![CSS3](https://img.shields.io/badge/-CSS-333?style=flat&logo=css3)
