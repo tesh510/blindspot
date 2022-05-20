@@ -12,8 +12,6 @@ class Car(models.Model):
   engine = models.CharField(max_length=50)
   mileage = models.IntegerField()
   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  # might cause error
-  # reviews = models.ManyToManyField(Review)
 
   def __str__(self):
     return f'{self.make} ({self.id})'
